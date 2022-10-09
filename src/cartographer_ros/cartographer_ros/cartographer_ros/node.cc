@@ -487,6 +487,17 @@ void Node::PublishLocalTrajectoryData(const ::ros::TimerEvent& timer_event) {
         pose_msg.header.stamp = stamped_transform.header.stamp;
         pose_msg.pose = ToGeometryMsgPose(tracking_to_map);
         tracked_pose_publisher_.publish(pose_msg);
+
+
+        //zhanglei add
+        //set these to param and publish it in a new node(carto_odom)
+          node_handle_.setParam("position_x", pose_msg.pose.position.x);
+          node_handle_.setParam("position_y", pose_msg.pose.position.y);
+          node_handle_.setParam("orientation_x", pose_msg.pose.orientation.x);
+          node_handle_.setParam("orientation_y", pose_msg.pose.orientation.y);
+          node_handle_.setParam("orientation_z", pose_msg.pose.orientation.z);
+          node_handle_.setParam("orientation_w", pose_msg.pose.orientation.w);
+
       }
     }
   }
