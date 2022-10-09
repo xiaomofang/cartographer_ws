@@ -5,3 +5,8 @@ devel_isolated/
 install_isolated/
 *~
 src/CMakeLists.txt
+src/Trajectory_accuracy/cmake-build-debug
+src/Trajectory_accuracy/map
+other/test/build
+other/test/devel
+other/test/.idea

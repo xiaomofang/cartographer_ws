@@ -59,10 +59,10 @@ target_link_libraries(odom2path
 )
 # add_dependencies(aruco_test ${PROJECT_NAME}_gencpp)
 #TODO odom2tum need a .h file but i can't find it
-#add_executable(odom2tum src/odom2tum.cpp)
-#target_link_libraries(odom2tum
-#  ${catkin_LIBRARIES}
-##   ${OpenCV_LIBS}
-##   ${aruco_LIBS}
-#)
-#add_dependencies(odom2tum ${PROJECT_NAME}_gencpp)
+add_executable(odom2tum src/odom2tum.cpp)
+target_link_libraries(odom2tum
+  ${catkin_LIBRARIES}
+#   ${OpenCV_LIBS}
+#   ${aruco_LIBS}
+)
+add_dependencies(odom2tum ${PROJECT_NAME}_gencpp)
