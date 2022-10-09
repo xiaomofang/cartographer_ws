@@ -1,0 +1,41 @@
+<!--
+  Copyright 2016 The Cartographer Authors
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<launch>
+
+
+  <arg name="load_state_filename" default="$(find carto_test)/map/mbot.pbstream"/>
+
+  <!-- 启动cartographer -->
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find carto_test)/lua
+          -configuration_basename turtlebot3_only_laser_localization.lua
+          -load_state_filename $(arg load_state_filename)"
+      output="screen">
+    <remap from="scan" to="scan" />
+  </node>
+
+  <!-- 启动rviz -->
+  <!-- <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find carto_test)/rviz/turtlebot3_only_laser_localization.rviz" /> -->
+
+    <node pkg = "tf" type = "static_transform_publisher" name = "broadcaster"
+		args = "0 0 0 0 0 0 odom base_footprint 1"/> -->
+
+  <node name="carto_odom" pkg="carto_test" type="carto_odom"/>
+
+</launch>
