@@ -42,6 +42,14 @@
 #include "sensor_msgs/MultiEchoLaserScan.h"
 #include "sensor_msgs/PointCloud2.h"
 
+//zhanglei add
+
+#include "pcl/io/io.h"
+#include "pcl/io/pcd_io.h"
+#include "string"
+#include "iostream"
+
+
 namespace {
 
 // Sizes of PCL point types have to be 4n floats for alignment, as described in
@@ -235,6 +243,7 @@ sensor_msgs::PointCloud2 ToPointCloud2Message(
     stream.next(kPointCloudComponentFourMagic); // kPointCloudComponentFourMagic = 1
   }
   return msg;
+
 }
 
 // 由ros格式的LaserScan转成carto格式的PointCloudWithIntensities
@@ -273,6 +282,8 @@ ToPointCloudWithIntensities(const sensor_msgs::PointCloud2& msg) {
             {Eigen::Vector3f{point.x, point.y, point.z}, point.time});
         point_cloud.intensities.push_back(point.intensity);
       }
+        //zhanglei add
+        //pcl::io::savePCDFile("/home/zhanglei/data/test/scandata"+std::to_string(msg.header.stamp.toSec())+".pcd",pcl_point_cloud);
     } 
     // 有强度字段, 没时间字段
     else {
@@ -285,7 +296,10 @@ ToPointCloudWithIntensities(const sensor_msgs::PointCloud2& msg) {
             {Eigen::Vector3f{point.x, point.y, point.z}, 0.f}); // 没有时间信息就把时间填0
         point_cloud.intensities.push_back(point.intensity);
       }
+        //zhanglei add
+        //pcl::io::savePCDFile("/home/zhanglei/data/test/scandata"+std::to_string(msg.header.stamp.toSec())+".pcd",pcl_point_cloud);
     }
+
   } 
   // 没有强度数据
   else {
@@ -301,7 +315,10 @@ ToPointCloudWithIntensities(const sensor_msgs::PointCloud2& msg) {
             {Eigen::Vector3f{point.x, point.y, point.z}, point.time});
         point_cloud.intensities.push_back(1.0f);
       }
-    } 
+        //zhanglei add
+        //pcl::io::savePCDFile("/home/zhanglei/data/test/scandata"+std::to_string(msg.header.stamp.toSec())+".pcd",pcl_point_cloud);
+    }
+
     // 没强度字段, 没时间字段
     else {
       pcl::PointCloud<pcl::PointXYZ> pcl_point_cloud;
@@ -313,6 +330,8 @@ ToPointCloudWithIntensities(const sensor_msgs::PointCloud2& msg) {
             {Eigen::Vector3f{point.x, point.y, point.z}, 0.f}); // 没有时间信息就把时间填0
         point_cloud.intensities.push_back(1.0f);
       }
+        //zhanglei add
+        //pcl::io::savePCDFile("/home/zhanglei/data/test/scandata"+std::to_string(msg.header.stamp.toSec())+".pcd",pcl_point_cloud);
     }
   }
 
@@ -331,7 +350,9 @@ ToPointCloudWithIntensities(const sensor_msgs::PointCloud2& msg) {
       CHECK_LE(point.time, 0.f)
           << "Encountered a point with a larger stamp than "
              "the last point in the cloud.";
+
     }
+
   }
 
   return std::make_tuple(point_cloud, timestamp);

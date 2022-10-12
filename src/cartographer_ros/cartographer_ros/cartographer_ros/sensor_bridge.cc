@@ -58,7 +58,15 @@ SensorBridge::SensorBridge(
       tf_bridge_(tracking_frame, lookup_transform_timeout_sec, tf_buffer),
       trajectory_builder_(trajectory_builder) {}
 
-// 将ros格式的里程计数据 转成tracking frame的pose, 再转成carto的里程计数据类型
+/**
+* @brief  将ros格式的里程计数据 转成tracking frame的pose, 再转成carto的里程计数据类型
+*
+* @param[in] msg ROS中的里程计数据(Odometry)
+* @param[out] OdometryData Carto中里程计格式
+*
+*/
+
+
 std::unique_ptr<carto::sensor::OdometryData> SensorBridge::ToOdometryData(
     const nav_msgs::Odometry::ConstPtr& msg) {
   const carto::common::Time time = FromRos(msg->header.stamp);

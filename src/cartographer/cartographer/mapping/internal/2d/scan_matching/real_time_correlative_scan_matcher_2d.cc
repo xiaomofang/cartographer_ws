@@ -188,7 +188,7 @@ void RealTimeCorrelativeScanMatcher2D::ScoreCandidates(
     std::vector<Candidate2D>* const candidates) const {
   for (Candidate2D& candidate : *candidates) {
     switch (grid.GetGridType()) {
-      case GridType::PROBABILITY_GRID:
+      case GridType::PROBABILITY_GRID:   //
         candidate.score = ComputeCandidateScore(
             static_cast<const ProbabilityGrid&>(grid),
             discrete_scans[candidate.scan_index], candidate.x_index_offset,
@@ -205,7 +205,7 @@ void RealTimeCorrelativeScanMatcher2D::ScoreCandidates(
     candidate.score *=
         std::exp(-common::Pow2(std::hypot(candidate.x, candidate.y) *
                                    options_.translation_delta_cost_weight() +
-                               std::abs(candidate.orientation) *
+                                   std::abs(candidate.orientation) *
                                    options_.rotation_delta_cost_weight()));
   }
 }

@@ -10,3 +10,9 @@ src/Trajectory_accuracy/map
 other/test/build
 other/test/devel
 other/test/.idea
+other
+src/cartographer/cmake-build-release
+src/cartographer_ros/cartographer_ros/cmake-build-release
+/.idea
+/tum_carto.txt
+/src/cartographer_ros/cartographer_ros/cartographer_ros/cmake-build-release/

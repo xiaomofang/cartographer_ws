@@ -1,6 +1,0 @@
-image: /home/zhw/test/src/carto_test/map/only_laser_imu.pgm
-resolution: 0.05
-origin: [-165.836, -73.5, 0.0]
-negate: 0
-occupied_thresh: 0.65
-free_thresh: 0.196
