@@ -502,6 +502,35 @@ void Node::PublishLocalTrajectoryData(const ::ros::TimerEvent& timer_event) {
             last_y = current_y;
             if(Euro_distance > 0.5){
                 std::cout<<"Euro_distance : "<<Euro_distance<<std::endl;
+
+                carto::sensor::TimedPointCloud point_cloud;
+                point_cloud.reserve(trajectory_data.local_slam_data->range_data_in_local
+                                            .returns.size());
+
+                // 获取local_slam_data的点云数据, 填入到point_cloud中
+                for (const cartographer::sensor::RangefinderPoint point :
+                        trajectory_data.local_slam_data->range_data_in_local.returns) {
+                    // 这里的虽然使用的是带时间戳的点云结构, 但是数据点的时间全是0.f
+                    point_cloud.push_back(cartographer::sensor::ToTimedRangefinderPoint(
+                            point, 0.f /* time */));
+                }
+
+                // 先将点云转换成ROS的格式,再发布scan_matched_point_cloud点云
+                auto ros_point_cloud_tosave = ToPointCloud2Message(
+                        carto::common::ToUniversal(trajectory_data.local_slam_data->time),
+                        node_options_.map_frame,
+                        // 将雷达坐标系下的点云转换成地图坐标系下的点云
+                        carto::sensor::TransformTimedPointCloud(
+                                point_cloud, trajectory_data.local_to_map.cast<float>()));
+
+
+
+                LOG(INFO) << "Saving map to pcd files ...";
+                pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_point_cloud_map(new pcl::PointCloud<pcl::PointXYZ>());
+                pcl::fromROSMsg(ros_point_cloud_tosave, *pcl_point_cloud_map);
+                pcl::io::savePCDFileASCII("/home/zhanglei/Cart/clion_carto_ws/SavedData/"+std::to_string(pose_msg.header.stamp.toSec())+".pcd" , *pcl_point_cloud_map);
+                LOG(INFO) << "Pcd written to " << "/home/zhanglei/Cart/clion_carto_ws/SavedData/"+std::to_string(pose_msg.header.stamp.toSec()) << ".pcd";
+
                 Euro_distance = 0;
             }
         }
