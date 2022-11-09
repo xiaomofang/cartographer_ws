@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/zhanglei/Cart/cartographer_ws/src/cartographer_ros/cartographer_ros/cmake-build-release/devel/setup.sh

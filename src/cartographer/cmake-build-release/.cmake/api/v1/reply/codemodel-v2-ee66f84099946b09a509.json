@@ -1,0 +1,134 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-aef11cfee21740ef67d3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "docs",
+					"jsonFile" : "directory-docs-Release-c463161ff6ebad611835.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "docs",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "cartographer",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "build_doc::@25ace4044b5cefe8d37f",
+					"jsonFile" : "target-build_doc-Release-11369f592cd2b01623f2.json",
+					"name" : "build_doc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cartographer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cartographer-Release-84db499dec8dba576a4d.json",
+					"name" : "cartographer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cartographer_autogenerate_ground_truth::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cartographer_autogenerate_ground_truth-Release-4491beabf92dc954be18.json",
+					"name" : "cartographer_autogenerate_ground_truth",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cartographer_compute_relations_metrics::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cartographer_compute_relations_metrics-Release-c57d50f7a63b6d22ccb7.json",
+					"name" : "cartographer_compute_relations_metrics",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cartographer_detect_changes::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cartographer_detect_changes-Release-c0cc944aef5a146cdc35.json",
+					"name" : "cartographer_detect_changes",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cartographer_pbstream::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cartographer_pbstream-Release-4d35bb12049435f0d95c.json",
+					"name" : "cartographer_pbstream",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cartographer_print_configuration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cartographer_print_configuration-Release-0782bcb49d92a3d8a951.json",
+					"name" : "cartographer_print_configuration",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/zhanglei/Cart/cartographer_ws/src/cartographer/cmake-build-release",
+		"source" : "/home/zhanglei/Cart/cartographer_ws/src/cartographer"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
